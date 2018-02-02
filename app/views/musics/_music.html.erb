@@ -1,0 +1,23 @@
+<tr>
+　<td>
+    タイトル：
+    <%= music.title %>
+  </td>
+</tr>
+<tr>
+  <td>
+    アーティスト：
+    <%= music.artist %>
+  </td>
+</tr>
+<tr>
+  <td>
+    ジャンル：
+    <%= music.genre %>
+  </td>
+</tr>
+<tr>
+  <td>
+    <%= link_to "delete", music, method: :delete %>
+  </td>
+</tr>

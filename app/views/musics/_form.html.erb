@@ -1,0 +1,6 @@
+<%= form_for(@musics, data: { remote: true }) do |f| %>
+  <%= f.text_field :title, :placeholder => "タイトル" %>
+  <%= f.text_field :artist, :placeholder => "アーティスト" %>
+  <%= f.text_field :genre, :placeholder => "ジャンル" %>
+  <%= f.submit('追加') %>
+<% end %>

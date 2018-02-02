@@ -1,0 +1,19 @@
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>アーティスト</th>
+      <th>ジャンル</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @musics.each do |music| %>
+      <tr>
+        <td><%= music.title %></td>
+        <td><%= music.artist %></td>
+        <td><%= music.genre %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
