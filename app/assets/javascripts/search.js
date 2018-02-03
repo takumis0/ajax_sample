@@ -1,11 +1,10 @@
 /*global $*/
 
 $(document).ready(function(){
-  console.log("Ready呼ばれてる");
-  
   var
   preFunc = null,
   preInput = '',
+  preSelect = '',
   input = '',
   select = '',
   itunesPost = function(input, select)
@@ -14,10 +13,10 @@ $(document).ready(function(){
         term: input,
         country: 'jp',
         media: 'music',
-        //attribute :select, //songTerm artistTerm genreIndexはindexだからX
+        attribute: select, //songTerm artistTerm genreIndexはindexだからX
         lang: 'ja_jp',
-        limit: '5',
-        sort: 'popular',
+        limit: '10',
+        sort: 'userRatingCount',
         sort_order: 'asc'
      };
      
@@ -41,32 +40,38 @@ $(document).ready(function(){
       });
   };
   
+  $('#inc_select').on('change' ,function() {
+    console.log("Change呼ばれてる");
+    checkForm();
+  });
+  
   $('#inc_search').on('keyup' ,function() {
     console.log("Keyup呼ばれてる");
-    
-    input = $.trim($(this).val());   //前後の不要な空白を削除
+    checkForm();
+  });
+  
+  var checkForm = function(){
+    input = $.trim($('#inc_search').val());   //前後の不要な空白を削除
     select = document.getElementById("inc_select").value;
     
-    if(preInput !== input){
+    if(preInput !== input || preSelect !== select){
       clearTimeout(preFunc);
       preFunc = setTimeout(itunesPost(input,select), 1000);
     }
     preInput = input;
-  });
+    preSelect = select;
+  };
 });
 
 var showData = function(json) {
-  $('#titleId').empty();
-  $('#artistId').empty();
-  $('#genereId').empty();
+  $('#iTunes-result').empty();
   for (var i = 0, len = json.results.length; i < len; i++) {
     var result = json.results[i];
-    //console.log('title:' + result.trackName + ' artist:' + result.artistName + ' genere:' + result.primaryGenreName);
-    var html_title = '<br>' + result.trackName,
-    html_artist = '<br>' + result.artistName,
-    html_genere = '<br>' + result.primaryGenreName;
-    $('#titleId').append(html_title);
-    $('#artistId').append(html_artist);
-    $('#genereId').append(html_genere);
+    var html_result = '<tr>';
+    html_result += '<td>' + result.trackName + '</td>';
+    html_result += '<td>' + result.artistName + '</td>';
+    html_result += '<td>' + result.primaryGenreName + '</td>';
+    html_result += '</tr>';
+    $('#iTunes-result').append(html_result);
   }
 };

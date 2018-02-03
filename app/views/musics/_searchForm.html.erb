@@ -1,14 +1,11 @@
 <h1>iTunes DBを検索する。</h1>
 
 <select id="inc_select" name="search_value" size="3">
-    <option value="title">タイトル</option>
-    <option value="artist">アーティスト</option>
-    <option value="genre">ジャンル</option>
+    <option value="songTerm">タイトル</option>
+    <option value="artistTerm">アーティスト</option>
 </select>
 <input id="inc_search" type="text">
 
 <div id='searched'>
     <%= render partial: 'searched' %>
 </div>
-
-<ul id="result"></ul>

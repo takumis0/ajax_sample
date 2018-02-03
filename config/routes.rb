@@ -3,11 +3,6 @@ AjaxSample::Application.routes.draw do
   post 'practice/index'
   
   resources :apples
-  resources :musics, only: [:index] do
-    collection do
-      get  :search
-    end
-  end
   resources :musics
   
   

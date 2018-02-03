@@ -25,10 +25,6 @@ class MusicsController < ApplicationController
        end
     end
     
-    def search
-        @musics = Music.search_by_artist(params[:q],params[:v])
-    end
-    
     def destroy
         Music.find(params[:id]).destroy
         flash[:success] = "User deleted"
